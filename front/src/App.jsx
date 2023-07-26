@@ -69,7 +69,7 @@ function App() {
       ) : error ? (
         <div className="flex flex-col items-center justify-center h-full">
           <img src={discordIcon} alt="" className="h-12 mb-1" />
-          <p className="text-2xl text-black text-center">
+          <p className="text-2xl text-center">
             ID de usuario de discord incorrecto.
           </p>
         </div>
