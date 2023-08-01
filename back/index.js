@@ -7,7 +7,6 @@ require("dotenv").config();
 app.use(express.json());
 app.use(cors());
 
-// You might want to store this in an environment variable or something
 const token = process.env.DISCORD_TOKEN;
 
 const discordIdtoTime = (discordId) => {
@@ -28,7 +27,7 @@ const verifyDiscordId = (id) => {
   return true;
 };
 
-const getGuild = async (id) => {
+const getGuildData = async (id) => {
   const response = await axios(
     `https://discord.com/api/v9/invites/${id}?with_counts=true&with_expiration=true`
   );
@@ -83,7 +82,7 @@ app.post("/discord", async (req, res) => {
   let data = {};
   if (url.includes("https://discord.gg/")) {
     id = url.split("https://discord.gg/")[1];
-    data = await getGuild(id);
+    data = await getGuildData(id);
   } else if (verifyDiscordId(url)) {
     id = url;
     data = await getUserData(id);
